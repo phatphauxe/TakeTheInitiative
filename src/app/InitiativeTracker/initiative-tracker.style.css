@@ -1,0 +1,16 @@
+.outer-content {
+  width: 100vw;
+  height: 100vh;
+  background-color: #CACAEF; }
+  .outer-content .main-content {
+    width: 50vw;
+    height: 100vh;
+    background-color: #3A3A8F;
+    margin: 0 auto;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+    overflow: hidden; }
+    @media screen and (max-width: 480px) {
+      .outer-content .main-content {
+        width: 80vw; } }
+
+/*# sourceMappingURL=initiative-tracker.style.css.map */

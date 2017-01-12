@@ -6,7 +6,10 @@ import {AuthProviders, AuthMethods, AngularFireModule} from "angularfire2";
 
 import { AppComponent } from './app.component';
 import {TakeTheInitiativeRouter} from './app-routing.module';
-import {InitiativeTrackerComponent} from "./InitiativeTracker/InitiativeTrackerComponent";
+import {InitiativeTrackerComponent} from "./InitiativeTracker/initiative-tracker.component";
+import {BottomMenuComponent} from "./InitiativeTracker/BottomMenu/bottom-menu.component";
+import {InitiativeListComponent} from "./InitiativeTracker/InitiativeList/initiative-list.component";
+import {TopMenuComponent} from "./InitiativeTracker/TopMenu/top-menu.component";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBO8X2z48pVHqTH7JdBb_SaN328ThLmcmo",
@@ -24,7 +27,10 @@ var firebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    InitiativeTrackerComponent
+    InitiativeTrackerComponent,
+    TopMenuComponent,
+    BottomMenuComponent,
+    InitiativeListComponent
   ],
   imports: [
     BrowserModule,
