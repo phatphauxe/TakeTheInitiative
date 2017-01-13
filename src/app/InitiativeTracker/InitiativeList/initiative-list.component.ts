@@ -1,7 +1,7 @@
 /**
  * Created by Admin on 1/11/2017.
  */
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 
 @Component ({
   selector: 'tti-initiative-list',
@@ -9,7 +9,12 @@ import {Component, Input} from '@angular/core';
   template: require('./initiative-list.template.html')
 })
 
-export class InitiativeListComponent {
+export class InitiativeListComponent implements OnInit{
   @Input('round') round;
+  @Input() initiativeList;
   constructor(){}
+
+  ngOnInit(){
+
+  }
 }

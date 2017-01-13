@@ -1,7 +1,7 @@
 /**
  * Created by Admin on 1/11/2017.
  */
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 
 @Component ({
   selector: 'tti-bottom-menu',
@@ -10,7 +10,10 @@ import {Component} from '@angular/core';
 })
 
 export class BottomMenuComponent {
-  started = false;
+  @Input() started:boolean = false;
+  @Output() advanceBtnClicked = new EventEmitter();
+  @Output() beginBtnClicked = new EventEmitter();
+
   constructor(){}
 
   getButtonIconType(){
@@ -25,9 +28,11 @@ export class BottomMenuComponent {
   startCombat(){
     if(!this.started) {
       this.started = true;
+      this.beginBtnClicked.emit(true);
     }
     else {
       //move initiative order
+      this.advanceBtnClicked.emit(true);
     }
   }
 }

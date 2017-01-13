@@ -1,7 +1,18 @@
 <div class="outer-content">
   <div class="main-content">
-    <tti-top-menu></tti-top-menu>
-    <tti-initiative-list [round]="round"></tti-initiative-list>
-    <tti-bottom-menu></tti-bottom-menu>
+    <tti-top-menu
+      (addNewCombatant)="addInitiativeItem($event)"
+      (resetAll)="resetAll($event)"
+    ></tti-top-menu>
+    <tti-initiative-list
+      [initiativeList]="workingList"
+      [round]="round"
+      (editCombatant)="editCombatant($event)"
+    ></tti-initiative-list>
+    <tti-bottom-menu
+      [started]="resetInitiative"
+      (advanceBtnClicked)="advance($event)"
+      (beginButtonClicked)="begin($event)"
+    ></tti-bottom-menu>
   </div>
 </div>

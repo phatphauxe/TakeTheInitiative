@@ -1,3 +1,8 @@
 <div class="initiative-list">
   <div class="round">{{round}}</div>
+  <div *ngFor="let entry of initiativeList">
+    <span>{{entry.name}}</span>
+      <span>{{entry.order}}</span>
+  </div>
 </div>
+
