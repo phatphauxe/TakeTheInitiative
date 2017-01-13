@@ -11,6 +11,7 @@ import {Component, Output, EventEmitter, Input} from '@angular/core';
 
 export class BottomMenuComponent {
   @Input() started:boolean = false;
+  @Input() listLength:number;
   @Output() advanceBtnClicked = new EventEmitter();
   @Output() beginBtnClicked = new EventEmitter();
 
@@ -27,8 +28,11 @@ export class BottomMenuComponent {
 
   startCombat(){
     if(!this.started) {
-      this.started = true;
-      this.beginBtnClicked.emit(true);
+      if(this.listLength > 1) {
+        this.started = true;
+        this.beginBtnClicked.emit(true);
+      }
+      return;
     }
     else {
       //move initiative order
