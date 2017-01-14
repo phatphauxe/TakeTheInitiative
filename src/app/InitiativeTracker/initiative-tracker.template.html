@@ -1,5 +1,6 @@
 <div class="outer-content">
   <div class="main-content">
+    <tti-item-builder [showBuilder]="showBuilder" (closeBuilder)="closeBuilder($event)"></tti-item-builder>
     <tti-top-menu
       (addNewCombatant)="addInitiativeItem($event)"
       (resetAll)="resetAll($event)"
@@ -7,6 +8,7 @@
     <tti-initiative-list
       [initiativeList]="workingList"
       [round]="round"
+      [started]="bottomView.started"
       (editCombatant)="editCombatant($event)"
     ></tti-initiative-list>
     <tti-bottom-menu

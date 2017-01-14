@@ -12,6 +12,7 @@ import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 export class InitiativeListComponent implements OnInit{
   @Input('round') round;
   @Input() initiativeList;
+  @Input() started;
   constructor(){}
 
   ngOnInit(){

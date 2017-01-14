@@ -10,6 +10,8 @@ import {InitiativeTrackerComponent} from "./InitiativeTracker/initiative-tracker
 import {BottomMenuComponent} from "./InitiativeTracker/BottomMenu/bottom-menu.component";
 import {InitiativeListComponent} from "./InitiativeTracker/InitiativeList/initiative-list.component";
 import {TopMenuComponent} from "./InitiativeTracker/TopMenu/top-menu.component";
+import {ListItemComponent} from "./InitiativeTracker/InitiativeList/InitiativeListItem/initiative-list-item.component";
+import {ItemBuilderComponent} from "./InitiativeTracker/ItemBuilder/item-builder.component";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBO8X2z48pVHqTH7JdBb_SaN328ThLmcmo",
@@ -30,7 +32,9 @@ var firebaseAuthConfig = {
     InitiativeTrackerComponent,
     TopMenuComponent,
     BottomMenuComponent,
-    InitiativeListComponent
+    InitiativeListComponent,
+    ListItemComponent,
+    ItemBuilderComponent
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ export class InitiativeTrackerComponent {
   round = 1;
   currentIndex = 0;
   called = false;
+  showBuilder = false;
 
   constructor() {
   }
@@ -50,12 +51,17 @@ export class InitiativeTrackerComponent {
     this.initiativeList = [];
     this.workingList = this.initiativeList;
     this.bottomView.started = false;
-    this.round = 0;
+    this.round = 1;
     this.currentIndex = 0;
   }
 
   addInitiativeItem(event) {
+    this.showBuilder = true;
     this.addItemToList(event);
+  }
+
+  closeBuilder(event){
+    this.showBuilder = false;
   }
 
   addItemToList(item) {

@@ -1,8 +1,7 @@
 .top-menu {
   width: 80%;
   height: 15%;
-  margin: 2.5% auto;
-  margin-top: 8.5%;
+  margin: 4.5vh auto 0.5vh auto;
   text-align: center; }
   .top-menu button {
     width: 45%;
@@ -18,21 +17,21 @@
       font-size: 8vh;
       user-select: none;
       color: #1A1A4F; }
-    .top-menu button:first-child {
-      border-top-right-radius: 0px;
-      border-bottom-right-radius: 0px;
-      border-right: 1px solid #ACACCA;
-      box-shadow: -3px 0 4px 0 rgba(0, 0, 0, 0.3); }
-      .top-menu button:first-child:active {
-        box-shadow: -2px 0 3px 0 rgba(0, 0, 0, 0.4);
-        box-shadow: inset -2px 0 2px rgba(0, 0, 0, 0.2); }
-    .top-menu button:last-child {
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 0px;
-      border-left: 1px solid #ACACCA;
-      box-shadow: 3px 0 4px 0 rgba(0, 0, 0, 0.3); }
-      .top-menu button:last-child:active {
-        box-shadow: 2px 0 3px 0 rgba(0, 0, 0, 0.4);
-        box-shadow: inset 2px 0 2px rgba(0, 0, 0, 0.2); }
+  .top-menu button:nth-of-type(1) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right: 1px solid #ACACCA;
+    box-shadow: -3px 0 4px 0 rgba(0, 0, 0, 0.3); }
+    .top-menu button:nth-of-type(1):active {
+      box-shadow: -2px 0 3px 0 rgba(0, 0, 0, 0.4);
+      box-shadow: inset -2px 0 2px rgba(0, 0, 0, 0.2); }
+  .top-menu button:nth-of-type(2) {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-left: 1px solid #ACACCA;
+    box-shadow: 3px 0 4px 0 rgba(0, 0, 0, 0.3); }
+    .top-menu button:nth-of-type(2):active {
+      box-shadow: 2px 0 3px 0 rgba(0, 0, 0, 0.4);
+      box-shadow: inset 2px 0 2px rgba(0, 0, 0, 0.2); }
 
 /*# sourceMappingURL=top-menu.style.css.map */

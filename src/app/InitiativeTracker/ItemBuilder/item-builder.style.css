@@ -1,0 +1,17 @@
+.builder {
+  position: absolute;
+  width: 40%;
+  margin: 0 auto;
+  background-color: #3a8f8f;
+  border-radius: 8px;
+  height: 92%;
+  z-index: 500;
+  top: 4%;
+  left: 30%; }
+  @media screen and (max-width: 420px) {
+    .builder {
+      top: 3%;
+      left: 15%;
+      width: 70%; } }
+
+/*# sourceMappingURL=item-builder.style.css.map */
