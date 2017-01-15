@@ -11,6 +11,6 @@
     overflow: hidden; }
     @media screen and (max-width: 480px) {
       .outer-content .main-content {
-        width: 80vw; } }
+        width: 100vw; } }
 
 /*# sourceMappingURL=initiative-tracker.style.css.map */
