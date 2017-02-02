@@ -5,6 +5,8 @@ import {Component, ViewChild, EventEmitter} from '@angular/core';
 import {TopMenuComponent} from "./TopMenu/top-menu.component";
 import {InitiativeListComponent} from "./InitiativeList/initiative-list.component";
 import {BottomMenuComponent} from "./BottomMenu/bottom-menu.component";
+import {FBService} from "../shared/services/fbService";
+import {FirebaseListObservable} from 'angularfire2';
 
 @Component ({
   selector: 'tti-initiative-tracker',
@@ -16,6 +18,7 @@ export class InitiativeTrackerComponent {
   @ViewChild(InitiativeListComponent) listView;
   @ViewChild(TopMenuComponent) topView;
 
+  serverList:FirebaseListObservable<any>;
   initiativeList = [];
   workingList = [];
   round = 1;
@@ -23,13 +26,23 @@ export class InitiativeTrackerComponent {
   called = false;
   showBuilder = false;
 
-  constructor() {
+  constructor(private fbService:FBService) {
+    this.serverList = this.fbService.getSessionByID(1);
+    this.serverList.subscribe((x) => {
+      this.initiativeList = [];
+      x.forEach((c:any)=>{
+          this.addItemToList(c);
+      });
+    });
   }
 
   begin(event) {
 
   }
 
+  removeItem(item){
+    this.fbService.removeCombatant(item.$key);
+  }
   advance(event) {
     if(!this.called) {
       this.called = true;
@@ -57,15 +70,17 @@ export class InitiativeTrackerComponent {
 
   addInitiativeItem(event) {
     this.showBuilder = true;
-    this.addItemToList(event);
   }
 
   closeBuilder(event){
     this.showBuilder = false;
   }
-
+  createNewCombatant(item){
+    item.sessionID = 1;
+    this.fbService.createCombatant(item);
+  }
   addItemToList(item) {
-
+      this.showBuilder = false;
       this.initiativeList.push(item);
       this.initiativeList.sort(function (a, b) {
         return parseInt(a.order) - parseInt(b.order);
@@ -77,11 +92,6 @@ export class InitiativeTrackerComponent {
     else {
       this.shiftList();
     }
-  }
-
-  insertInto(arr, index, item)
-  {
-    arr.splice(index, 0, item);
   }
 
   shiftList(){

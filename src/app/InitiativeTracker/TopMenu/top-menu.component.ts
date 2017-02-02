@@ -12,19 +12,18 @@ import any = jasmine.any;
 
 export class TopMenuComponent {
   count:number = 0;
-  @Output() addNewCombatant = new EventEmitter<any>();
+  @Output() addNewCombatant = new EventEmitter<boolean>();
   @Output() resetAll = new EventEmitter<boolean>();
   constructor(){}
 
-  clearList(){
+  clearList(e){
+    e.preventDefault();
     this.resetAll.emit(true);
   }
 
-  addCombatant(){
-    let number = this.count;
-    this.count = this.count + 1;
-    let order = Math.ceil(Math.random() * 20);
-    this.addNewCombatant.emit({name:`Player ${number}`, order:`${order}`});
+  addCombatant(e){
+    e.preventDefault();
+    this.addNewCombatant.emit(true);
 
   }
 

@@ -26,7 +26,8 @@ export class BottomMenuComponent {
     }
   }
 
-  startCombat(){
+  startCombat(e){
+    e.preventDefault();
     if(!this.started) {
       if(this.listLength > 1) {
         this.started = true;

@@ -1,6 +1,6 @@
 <div class="outer-content noselect">
   <div class="main-content">
-    <tti-item-builder [showBuilder]="showBuilder" (closeBuilder)="closeBuilder($event)"></tti-item-builder>
+    <tti-item-builder [showBuilder]="showBuilder" (closeBuilder)="closeBuilder($event)"  (createCombatant)="createNewCombatant($event)"></tti-item-builder>
     <tti-top-menu
       (addNewCombatant)="addInitiativeItem($event)"
       (resetAll)="resetAll($event)"
@@ -10,6 +10,7 @@
       [round]="round"
       [started]="bottomView.started"
       (editCombatant)="editCombatant($event)"
+      (removeCombatant)="removeItem($event)"
     ></tti-initiative-list>
     <tti-bottom-menu
       [started]="resetInitiative"

@@ -13,9 +13,14 @@ export class InitiativeListComponent implements OnInit{
   @Input('round') round;
   @Input() initiativeList;
   @Input() started;
+  @Output() removeCombatant = new EventEmitter<any>()
   constructor(){}
 
   ngOnInit(){
 
+  }
+
+  removeItem(item){
+    this.removeCombatant.emit(item);
   }
 }

@@ -12,6 +12,8 @@ import {InitiativeListComponent} from "./InitiativeTracker/InitiativeList/initia
 import {TopMenuComponent} from "./InitiativeTracker/TopMenu/top-menu.component";
 import {ListItemComponent} from "./InitiativeTracker/InitiativeList/InitiativeListItem/initiative-list-item.component";
 import {ItemBuilderComponent} from "./InitiativeTracker/ItemBuilder/item-builder.component";
+import {InitiativeTrackerDesktopComponent} from "./InitiativeTrackerDesktop/initiative-tracker-desktop.component";
+import {FBService} from "./shared/services/fbService";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBO8X2z48pVHqTH7JdBb_SaN328ThLmcmo",
@@ -30,6 +32,7 @@ var firebaseAuthConfig = {
   declarations: [
     AppComponent,
     InitiativeTrackerComponent,
+    InitiativeTrackerDesktopComponent,
     TopMenuComponent,
     BottomMenuComponent,
     InitiativeListComponent,
@@ -41,8 +44,9 @@ var firebaseAuthConfig = {
     FormsModule,
     HttpModule,
     TakeTheInitiativeRouter,
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
-  providers: [],
+  providers: [FBService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

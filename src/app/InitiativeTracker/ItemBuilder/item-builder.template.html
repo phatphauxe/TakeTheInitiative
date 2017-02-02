@@ -1,3 +1,41 @@
-<div *ngIf="showBuilder" class="builder">ITEM BUILDER
-  <button (touchend)="closeItemBuilder()">Close</button>
+<div *ngIf="showBuilder" class="builder">
+  <div class="builder-container">
+    <div class="item-builder-head">
+      Create a new Combatant
+    </div>
+    <div class="pad"></div>
+    <div class="item-builder-body">
+      <div class="item-builder-row">
+        <!--<div class="icon-picker"></div>-->
+        <div class="col-11"><label class="col-3">Name</label><input class="col-11" id="nameInput" type="text" placeholder="Combatant Name" #name/></div>
+      </div>
+      <div class="item-builder-row">
+        <div class="col-6"><label class="col-3">Hit Points</label><input class="col-8" type="text" #hitpoints/></div>
+        <div class="col-6" ><label class="col-3">Initiative Roll</label><input class="col-8" type="text" #order/></div>
+      </div>
+      <div class="item-builder-row">
+        <div class="col-6"><label class="col-3">Melee To Hit</label><input class="col-6" type="text" #melee></div>
+        <div class="col-6"><label class="col-3">Range To Hit</label><input class="col-6" type="text" #range></div>
+        <div class="col-6"><label class="col-3">Armor Rating</label><input class="col-6" type="text" #armorRating></div>
+      </div>
+      <!--<div class="item-builder-row">-->
+        <!--<div><label>Benifit</label><input type="text" placeholder="Benifit" #benifitInput><label>Duration</label><input type="text" placeholder="Rounds" #duration><button type="button">+</button></div>-->
+        <!--<div *ngFor="let benifit of benifits">-->
+          <!--<span >{{benifit.name}}</span><span>{{benifit.duration}}</span>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="item-builder-row">-->
+        <!--<div><label>Detriment</label><input type="text" placeholder="Detriment" #detrimentInput><label>Duration</label><input type="text" placeholder="Rounds"#duration><button type="button">+</button></div>-->
+        <!--<div *ngFor="let detriment of detriments">-->
+          <!--<span>{{detriment.name}}</span><span>{{detriment.duration}}</span>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="item-builder-footer">
+        <div class="item-builder-row">
+          <button (touchend)="closeItemBuilder()" >Close</button>
+          <button (touchend)="createNewCombatant({name: name.value, order: order.value, hitpoints: hitpoints.value, melee: melee.value, range: range.value, armor: armorRating.value})">Create</button>
+        </div>
+    </div>
+</div>
 </div>
