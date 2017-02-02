@@ -61,11 +61,12 @@ export class InitiativeTrackerComponent {
   }
 
   resetAll(event) {
-    this.initiativeList = [];
-    this.workingList = this.initiativeList;
+
+
     this.bottomView.started = false;
     this.round = 1;
     this.currentIndex = 0;
+    this.shiftList();
   }
 
   addInitiativeItem(event) {
