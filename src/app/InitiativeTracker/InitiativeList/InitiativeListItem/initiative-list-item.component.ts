@@ -11,7 +11,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 })
 
 export class ListItemComponent {
-
+  @Input() index;
   @Input() entry;
   @Output() removeCombatant = new EventEmitter<any>();
   constructor(){

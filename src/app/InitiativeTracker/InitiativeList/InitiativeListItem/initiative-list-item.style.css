@@ -1,3 +1,29 @@
+.list-item {
+  width: calc(100% - 26px);
+  height: 100px;
+  border: solid 3px #3A3A8F;
+  color: #1A1A4F;
+  font-size: 22px;
+  font-weight: 600;
+  background-color: #CACAEF;
+  padding: 10px; }
+  .list-item .close-item {
+    position: relative;
+    right: -280px;
+    top: -50px; }
+    .list-item .close-item button {
+      background: none;
+      border: none; }
+      .list-item .close-item button i {
+        font-size: 28px;
+        color: #1A1A4F; }
 
+.list-item[id="0"] {
+  background-color: #8acfcf;
+  color: #055050;
+  border: solid 3px #3a8f8f; }
+  .list-item[id="0"] .close-item button i {
+    font-size: 28px;
+    color: #055050; }
 
 /*# sourceMappingURL=initiative-list-item.style.css.map */

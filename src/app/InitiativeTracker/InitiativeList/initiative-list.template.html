@@ -1,8 +1,10 @@
-<div class="initiative-list">
+<div class="initiative-list" style="overflow-y: scroll">
   <div class="round" *ngIf="started">Round: {{round}}</div>
   <div class="round small" *ngIf="!started && initiativeList.length < 2" ><span>Add More Combatants To Begin</span></div>
   <div class="round" *ngIf="!started && initiativeList.length > 1">Ready To Begin</div>
-  <tti-list-item *ngFor="let entry of initiativeList" [entry]="entry" (removeCombatant)="removeItem($event)">
-  </tti-list-item>
+  <div style="margin-top: 50px">
+    <tti-list-item *ngFor="let entry of initiativeList" [entry]="entry" [index]="getIndex(entry)" (removeCombatant)="removeItem($event)">
+    </tti-list-item>
+  </div>
 </div>
 

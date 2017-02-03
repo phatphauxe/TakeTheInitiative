@@ -1,3 +1,3 @@
-<div style="width: 100%; height: 50px; border: solid 1px #1A1A4F; color: #CACAEF; font-size: 16px;">
-  {{entry.name}} {{entry.order}} <button (touchend)="removeListItem($event)">x</button>
+<div class="list-item" id="{{index}}" >
+  <div>{{entry.name}}</div><div>{{entry.order}}</div>  <div class="close-item"><button  (touchend)="removeListItem($event)"><i class="material-icons">clear</i></button></div>
 </div>

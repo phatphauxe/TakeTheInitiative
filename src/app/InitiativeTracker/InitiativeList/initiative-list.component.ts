@@ -23,4 +23,8 @@ export class InitiativeListComponent implements OnInit{
   removeItem(item){
     this.removeCombatant.emit(item);
   }
+
+  getIndex(item){
+    return this.initiativeList.indexOf(item);
+  }
 }
