@@ -38,12 +38,13 @@ export class InitiativeTrackerComponent implements OnInit {
   ngOnInit(){
     this.sessionDynamic = this.sessionService.getSession(this.enteredSession);
     this.sessionDynamic.subscribe((x) => {
-      debugger;
+
       if(x) {
         if(!isNullOrUndefined(x.currentIndex) && !isNullOrUndefined(x.round) && !isNullOrUndefined(x.started)) {
           this.currentIndex = x.currentIndex;
           this.round = x.round;
           this.bottomView.started = x.started;
+          this.shiftList();
         }
         else {
           this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: false});
@@ -65,7 +66,7 @@ export class InitiativeTrackerComponent implements OnInit {
   }
 
   begin(event) {
-    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
+    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: true});
   }
 
   removeItem(item){
