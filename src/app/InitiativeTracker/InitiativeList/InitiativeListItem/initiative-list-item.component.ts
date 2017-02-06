@@ -2,6 +2,7 @@
  * Created by Admin on 1/12/2017.
  */
 import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'tti-list-item',
@@ -14,13 +15,13 @@ export class ListItemComponent {
   @Input() index;
   @Input() entry;
   @Output() removeCombatant = new EventEmitter<any>();
-  constructor(){
+  constructor(private router:Router){
 
   }
 
   removeListItem(e){
     e.preventDefault();
-    this.removeCombatant.emit(this.entry);
+    this.router.navigate(['/combatant/' + this.entry.$key]);
   }
 }
 

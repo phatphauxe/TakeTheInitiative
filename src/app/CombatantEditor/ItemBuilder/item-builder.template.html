@@ -1,4 +1,5 @@
-<div *ngIf="showBuilder" class="builder">
+<div class="backdrop"></div>
+<div class="builder">
   <div class="builder-container">
     <div class="item-builder-head">
       Create a new Combatant
@@ -33,7 +34,7 @@
     <!--</div>-->
     <div class="item-builder-footer">
         <div class="item-builder-row">
-          <button (touchend)="closeItemBuilder()" >Close</button>
+          <button (touchend)="closeItemBuilder($event)" >Close</button>
           <button (touchend)="createNewCombatant({name: name.value, order: order.value, hitpoints: hitpoints.value, melee: melee.value, range: range.value, armor: armorRating.value})">Create</button>
         </div>
     </div>

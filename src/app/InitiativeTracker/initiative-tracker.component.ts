@@ -1,47 +1,75 @@
 /**
  * Created by Admin on 1/11/2017.
  */
-import {Component, ViewChild, EventEmitter} from '@angular/core';
+import {Component, ViewChild, EventEmitter, OnInit} from '@angular/core';
 import {TopMenuComponent} from "./TopMenu/top-menu.component";
 import {InitiativeListComponent} from "./InitiativeList/initiative-list.component";
 import {BottomMenuComponent} from "./BottomMenu/bottom-menu.component";
-import {FBService} from "../shared/services/fbService";
-import {FirebaseListObservable} from 'angularfire2';
+import {CombatantService} from "../shared/services/combatantService";
+import {FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import {Router} from "@angular/router";
+import {SessionService} from "../shared/services/sessionService";
+import {isNullOrUndefined} from "util";
 
 @Component ({
   selector: 'tti-initiative-tracker',
   styles: [require('./initiative-tracker.style.scss')],
   template: require('./initiative-tracker.template.html')
 })
-export class InitiativeTrackerComponent {
+export class InitiativeTrackerComponent implements OnInit {
   @ViewChild(BottomMenuComponent) bottomView;
   @ViewChild(InitiativeListComponent) listView;
   @ViewChild(TopMenuComponent) topView;
 
+  enteredSession = 1;
+  sessionDynamic:FirebaseObjectObservable<any>;
+  session = null;
   serverList:FirebaseListObservable<any>;
   initiativeList = [];
   workingList = [];
   round = 1;
   currentIndex = 0;
   called = false;
-  showBuilder = false;
 
-  constructor(private fbService:FBService) {
-    this.serverList = this.fbService.getSessionByID(1);
+  constructor(private combatantService:CombatantService, private sessionService:SessionService, private router:Router) {
+
+  }
+
+  ngOnInit(){
+    this.sessionDynamic = this.sessionService.getSession(this.enteredSession);
+    this.sessionDynamic.subscribe((x) => {
+      debugger;
+      if(x) {
+        if(!isNullOrUndefined(x.currentIndex) && !isNullOrUndefined(x.round) && !isNullOrUndefined(x.started)) {
+          this.currentIndex = x.currentIndex;
+          this.round = x.round;
+          this.bottomView.started = x.started;
+        }
+        else {
+          this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: false});
+        }
+      }
+      else {
+        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: false});
+      }
+
+    });
+
+    this.serverList = this.combatantService.getSessionByID(this.enteredSession);
     this.serverList.subscribe((x) => {
       this.initiativeList = [];
       x.forEach((c:any)=>{
-          this.addItemToList(c);
+        this.addItemToList(c);
       });
     });
   }
 
   begin(event) {
-
+    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
   }
 
   removeItem(item){
-    this.fbService.removeCombatant(item.$key);
+    this.combatantService.removeCombatant(item.$key);
   }
   advance(event) {
     if(!this.called) {
@@ -51,11 +79,13 @@ export class InitiativeTrackerComponent {
         this.round = this.round + 1;
         this.shiftList();
         this.called = false;
+        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
       }
       else {
         this.currentIndex = this.currentIndex + 1;
         this.shiftList();
         this.called = false;
+        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
       }
     }
   }
@@ -67,21 +97,14 @@ export class InitiativeTrackerComponent {
     this.round = 1;
     this.currentIndex = 0;
     this.shiftList();
+    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
   }
 
   addInitiativeItem(event) {
-    this.showBuilder = true;
+    this.router.navigate(['combatant/create']);
   }
 
-  closeBuilder(event){
-    this.showBuilder = false;
-  }
-  createNewCombatant(item){
-    item.sessionID = 1;
-    this.fbService.createCombatant(item);
-  }
   addItemToList(item) {
-      this.showBuilder = false;
       this.initiativeList.push(item);
       this.initiativeList.sort(function (a, b) {
         return parseInt(a.order) - parseInt(b.order);

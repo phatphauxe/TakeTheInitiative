@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFire} from 'angularfire2';
 @Injectable()
-export class FBService {
+export class CombatantService {
 
   constructor(private af:AngularFire){
 
@@ -20,6 +20,9 @@ export class FBService {
     this.af.database.list('combatants').push(combatant);
   }
 
+  getCombatant(key){
+    return this.af.database.object('combatants/' + key);
+  }
   updateCombatant(updateData:any, key:string){
     this.af.database.object('combatants/'+ key).update(updateData);
   }

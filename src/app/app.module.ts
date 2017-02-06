@@ -11,9 +11,11 @@ import {BottomMenuComponent} from "./InitiativeTracker/BottomMenu/bottom-menu.co
 import {InitiativeListComponent} from "./InitiativeTracker/InitiativeList/initiative-list.component";
 import {TopMenuComponent} from "./InitiativeTracker/TopMenu/top-menu.component";
 import {ListItemComponent} from "./InitiativeTracker/InitiativeList/InitiativeListItem/initiative-list-item.component";
-import {ItemBuilderComponent} from "./InitiativeTracker/ItemBuilder/item-builder.component";
+import {ItemBuilderComponent} from "./CombatantEditor/ItemBuilder/item-builder.component";
 import {InitiativeTrackerDesktopComponent} from "./InitiativeTrackerDesktop/initiative-tracker-desktop.component";
-import {FBService} from "./shared/services/fbService";
+import {CombatantService} from "./shared/services/combatantService";
+import {ItemEditorComponent} from "./CombatantEditor/ItemEditor/item-editor.component";
+import {SessionService} from "./shared/services/sessionService";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBO8X2z48pVHqTH7JdBb_SaN328ThLmcmo",
@@ -37,7 +39,8 @@ var firebaseAuthConfig = {
     BottomMenuComponent,
     InitiativeListComponent,
     ListItemComponent,
-    ItemBuilderComponent
+    ItemBuilderComponent,
+    ItemEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ var firebaseAuthConfig = {
     TakeTheInitiativeRouter,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
-  providers: [FBService],
+  providers: [CombatantService, SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

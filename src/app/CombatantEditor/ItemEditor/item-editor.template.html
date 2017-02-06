@@ -1,0 +1,46 @@
+<div class="backdrop"></div>
+<div class="builder" *ngIf="entry">
+  <div class="builder-container">
+    <div class="item-builder-head">
+      Editing Combatant
+    </div>
+    <div class="pad"></div>
+    <div class="item-builder-body">
+      <div class="item-builder-row">
+        <!--<div class="icon-picker"></div>-->
+        <div class="col-11"><label class="col-3">Name</label><input class="col-11" id="nameInput" type="text" placeholder="Combatant Name" [(ngModel)]="entry.name"/></div>
+      </div>
+      <div class="item-builder-row">
+        <div class="col-6"><label class="col-3">Hit Points</label><input class="col-8" type="text" [(ngModel)]="entry.hitpoints"/></div>
+        <div class="col-6" ><label class="col-3">Initiative Roll</label><input class="col-8" type="text" [(ngModel)]="entry.order"/></div>
+      </div>
+      <div class="item-builder-row">
+        <div class="col-6"><label class="col-3">Melee To Hit</label><input class="col-6" type="text" [(ngModel)]="entry.melee"></div>
+        <div class="col-6"><label class="col-3">Range To Hit</label><input class="col-6" type="text" [(ngModel)]="entry.range"></div>
+        <div class="col-6"><label class="col-3">Armor Rating</label><input class="col-6" type="text" [(ngModel)]="entry.armor"></div>
+      </div>
+      <!--<div class="item-builder-row">-->
+      <!--<div><label>Benifit</label><input type="text" placeholder="Benifit" #benifitInput><label>Duration</label><input type="text" placeholder="Rounds" #duration><button type="button">+</button></div>-->
+      <!--<div *ngFor="let benifit of benifits">-->
+      <!--<span >{{benifit.name}}</span><span>{{benifit.duration}}</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="item-builder-row">-->
+      <!--<div><label>Detriment</label><input type="text" placeholder="Detriment" #detrimentInput><label>Duration</label><input type="text" placeholder="Rounds"#duration><button type="button">+</button></div>-->
+      <!--<div *ngFor="let detriment of detriments">-->
+      <!--<span>{{detriment.name}}</span><span>{{detriment.duration}}</span>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="item-builder-footer">
+        <div class="item-builder-row">
+          <button (touchend)="closeItemEditor($event)" >Cancel</button>
+          <button (touchend)="saveItemEditor({name: entry.name, order: entry.order, hitpoints: entry.hitpoints, melee: entry.melee, range: entry.range, armor: entry.armor})">Save</button>
+        </div>
+        <div class="item-builder-row" style="margin-top: 20px">
+          <button (touchend)="deleteItemEditor()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
