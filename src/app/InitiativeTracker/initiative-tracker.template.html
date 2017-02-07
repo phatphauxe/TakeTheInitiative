@@ -6,13 +6,10 @@
     ></tti-top-menu>
     <tti-initiative-list
       [initiativeList]="workingList"
-      [round]="round"
-      [started]="bottomView.started"
-      (editCombatant)="editCombatant($event)"
-      (removeCombatant)="removeItem($event)"
+      [sessionID] = "enteredSession"
     ></tti-initiative-list>
     <tti-bottom-menu
-      [started]="resetInitiative"
+      [started]="started"
       [listLength]="workingList.length"
       (advanceBtnClicked)="advance($event)"
       (beginButtonClicked)="begin($event)"

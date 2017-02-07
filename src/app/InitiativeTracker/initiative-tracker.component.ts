@@ -30,6 +30,7 @@ export class InitiativeTrackerComponent implements OnInit {
   round = 1;
   currentIndex = 0;
   called = false;
+  started = false;
 
   constructor(private combatantService:CombatantService, private sessionService:SessionService, private router:Router) {
 
@@ -43,7 +44,7 @@ export class InitiativeTrackerComponent implements OnInit {
         if(!isNullOrUndefined(x.currentIndex) && !isNullOrUndefined(x.round) && !isNullOrUndefined(x.started)) {
           this.currentIndex = x.currentIndex;
           this.round = x.round;
-          this.bottomView.started = x.started;
+          this.started = x.started;
           this.shiftList();
         }
         else {
@@ -69,9 +70,6 @@ export class InitiativeTrackerComponent implements OnInit {
     this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: true});
   }
 
-  removeItem(item){
-    this.combatantService.removeCombatant(item.$key);
-  }
   advance(event) {
     if(!this.called) {
       this.called = true;
@@ -80,13 +78,13 @@ export class InitiativeTrackerComponent implements OnInit {
         this.round = this.round + 1;
         this.shiftList();
         this.called = false;
-        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
+        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
       }
       else {
         this.currentIndex = this.currentIndex + 1;
         this.shiftList();
         this.called = false;
-        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
+        this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
       }
     }
   }
@@ -98,7 +96,7 @@ export class InitiativeTrackerComponent implements OnInit {
     this.round = 1;
     this.currentIndex = 0;
     this.shiftList();
-    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.bottomView.started});
+    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
   }
 
   addInitiativeItem(event) {

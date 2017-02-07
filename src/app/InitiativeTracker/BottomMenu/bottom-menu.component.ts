@@ -10,7 +10,7 @@ import {Component, Output, EventEmitter, Input} from '@angular/core';
 })
 
 export class BottomMenuComponent {
-  @Input() started:boolean = false;
+  @Input() started:boolean;
   @Input() listLength:number;
   @Output() advanceBtnClicked = new EventEmitter();
   @Output() beginBtnClicked = new EventEmitter();
