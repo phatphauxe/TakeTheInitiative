@@ -72,13 +72,11 @@ export class InitiativeTrackerComponent implements OnInit {
       if (this.currentIndex == this.workingList.length - 1) {
         this.currentIndex = 0;
         this.round = this.round + 1;
-        this.shiftList();
         this.called = false;
         this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
       }
       else {
         this.currentIndex = this.currentIndex + 1;
-        this.shiftList();
         this.called = false;
         this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
       }
