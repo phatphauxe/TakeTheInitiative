@@ -9,10 +9,9 @@
       [sessionID] = "enteredSession"
     ></tti-initiative-list>
     <tti-bottom-menu
-      [started]="started"
       [listLength]="workingList.length"
+      [sessionID]="enteredSession"
       (advanceBtnClicked)="advance($event)"
-      (beginButtonClicked)="begin($event)"
     ></tti-bottom-menu>
   </div>
 </div>

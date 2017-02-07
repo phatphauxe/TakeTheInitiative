@@ -19,19 +19,19 @@ export class InitiativeListComponent implements OnInit{
   started = false;
   round = 1;
   constructor(private sessionService:SessionService){
+
+  }
+
+  ngOnInit(){
     let result = this.sessionService.getSession(this.sessionID);
     result.subscribe((x) => {
       if(x) {
         if(!isNullOrUndefined(x.round) && !isNullOrUndefined(x.started)){
           this.round = x.round;
-          this.started = this.started;
+          this.started = x.started;
         }
       }
-    })
-  }
-
-  ngOnInit(){
-
+    });
   }
 
   removeItem(item){

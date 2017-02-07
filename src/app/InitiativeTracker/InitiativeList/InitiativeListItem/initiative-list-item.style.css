@@ -1,16 +1,24 @@
 .list-item {
   width: calc(100% - 26px);
-  height: 100px;
+  height: 25px;
   border: solid 3px #3A3A8F;
   color: #1A1A4F;
   font-size: 28px;
   font-weight: 600;
   background-color: #CACAEF;
   padding: 10px; }
-  .list-item .close-item {
+  .list-item .order {
+    font-size: 32px;
+    font-weight: 600;
     position: relative;
-    right: -85%;
-    top: -105%; }
+    top: -35px;
+    left: 150px; }
+  .list-item .close-item {
+    float: right;
+    height: 50px;
+    margin-top: 0;
+    top: -75px;
+    position: relative; }
     .list-item .close-item button {
       background: none;
       border: none; }
@@ -21,16 +29,21 @@
 .list-item[id="0"] {
   background-color: #8acfcf;
   color: #055050;
-  border: solid 3px #3a8f8f; }
-  .list-item[id="0"] .close-item button i {
-    font-size: 28px;
-    color: #055050; }
-
-.order {
-  font-size: 64px;
-  font-weight: 600;
-  position: relative;
-  top: -20%;
-  right: -45%; }
+  border: solid 3px #3a8f8f;
+  height: 100px; }
+  .list-item[id="0"] .order {
+    font-size: 64px;
+    font-weight: 600;
+    position: relative;
+    top: 0; }
+  .list-item[id="0"] .close-item {
+    float: right;
+    height: 50px;
+    margin-top: 0;
+    top: -110%;
+    position: relative; }
+    .list-item[id="0"] .close-item button i {
+      font-size: 28px;
+      color: #055050; }
 
 /*# sourceMappingURL=initiative-list-item.style.css.map */

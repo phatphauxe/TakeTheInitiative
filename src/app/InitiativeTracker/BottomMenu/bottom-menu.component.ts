@@ -1,7 +1,10 @@
 /**
  * Created by Admin on 1/11/2017.
  */
-import {Component, Output, EventEmitter, Input} from '@angular/core';
+import {Component, Output, EventEmitter, Input, OnInit} from '@angular/core';
+import {SessionService} from "../../shared/services/sessionService";
+import {FirebaseObjectObservable} from "angularfire2";
+import {isNullOrUndefined} from "util";
 
 @Component ({
   selector: 'tti-bottom-menu',
@@ -9,13 +12,28 @@ import {Component, Output, EventEmitter, Input} from '@angular/core';
   template: require('./bottom-menu.template.html')
 })
 
-export class BottomMenuComponent {
-  @Input() started:boolean;
+export class BottomMenuComponent implements OnInit{
   @Input() listLength:number;
-  @Output() advanceBtnClicked = new EventEmitter();
-  @Output() beginBtnClicked = new EventEmitter();
+  @Input() sessionID:number;
+  @Output() advanceBtnClicked = new EventEmitter<boolean>();
+  session:FirebaseObjectObservable<any>;
+  started:boolean;
+  currentIndex:number;
+  round:number;
 
-  constructor(){}
+  constructor(private sessionService:SessionService){}
+
+  ngOnInit(){
+    this.session = this.sessionService.getSession(this.sessionID);
+    this.session.subscribe((x) => {
+      if(x) {
+        if(!isNullOrUndefined(x.started)){
+          this.started = x.started;
+        }
+      }
+    })
+
+  }
 
   getButtonIconType(){
     if(this.started){
@@ -30,10 +48,8 @@ export class BottomMenuComponent {
     e.preventDefault();
     if(!this.started) {
       if(this.listLength > 1) {
-        this.started = true;
-        this.beginBtnClicked.emit(true);
+        this.sessionService.setSession(this.sessionID, {started: true, currentIndex: 0, round: 1});
       }
-      return;
     }
     else {
       //move initiative order

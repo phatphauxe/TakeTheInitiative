@@ -66,10 +66,6 @@ export class InitiativeTrackerComponent implements OnInit {
     });
   }
 
-  begin(event) {
-    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: true});
-  }
-
   advance(event) {
     if(!this.called) {
       this.called = true;
@@ -96,7 +92,7 @@ export class InitiativeTrackerComponent implements OnInit {
     this.round = 1;
     this.currentIndex = 0;
     this.shiftList();
-    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
+    this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: false});
   }
 
   addInitiativeItem(event) {
