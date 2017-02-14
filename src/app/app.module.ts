@@ -16,7 +16,7 @@ import {InitiativeTrackerDesktopComponent} from "./Desktop/InitiativeTrackerDesk
 import {CombatantService} from "./shared/services/combatantService";
 import {ItemEditorComponent} from "./Mobile/CombatantEditor/ItemEditor/item-editor.component";
 import {SessionService} from "./shared/services/sessionService";
-import SignOnComponent from "./Mobile/SignOn/signOn.component";
+import {SignOnComponent} from "./Mobile/SignOn/signOn.component";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBO8X2z48pVHqTH7JdBb_SaN328ThLmcmo",

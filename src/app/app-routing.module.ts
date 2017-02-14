@@ -4,7 +4,7 @@ import {InitiativeTrackerComponent} from "./Mobile/InitiativeTracker/initiative-
 import {InitiativeTrackerDesktopComponent} from "./Desktop/InitiativeTrackerDesktop/initiative-tracker-desktop.component";
 import {ItemBuilderComponent} from "./Mobile/CombatantEditor/ItemBuilder/item-builder.component";
 import {ItemEditorComponent} from "./Mobile/CombatantEditor/ItemEditor/item-editor.component";
-import SignOnComponent from "./Mobile/SignOn/signOn.component";
+import {SignOnComponent} from "./Mobile/SignOn/signOn.component";
 
 var isMobile = {
   Android: function() { return navigator.userAgent.match(/Android/i); },

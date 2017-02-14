@@ -10,7 +10,7 @@ import {AngularFire, AuthProviders, AuthMethods} from "angularfire2";
   styles: [],
   template: require('./signOn.template.html')
 })
-export default class SignOnComponent {
+export class SignOnComponent {
   constructor(private af:AngularFire){
 
   }
