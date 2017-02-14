@@ -5,10 +5,10 @@ import {Component, ViewChild, EventEmitter, OnInit} from '@angular/core';
 import {TopMenuComponent} from "./TopMenu/top-menu.component";
 import {InitiativeListComponent} from "./InitiativeList/initiative-list.component";
 import {BottomMenuComponent} from "./BottomMenu/bottom-menu.component";
-import {CombatantService} from "../shared/services/combatantService";
+import {CombatantService} from "../../shared/services/combatantService";
 import {FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import {Router} from "@angular/router";
-import {SessionService} from "../shared/services/sessionService";
+import {SessionService} from "../../shared/services/sessionService";
 import {isNullOrUndefined} from "util";
 
 @Component ({
@@ -23,14 +23,14 @@ export class InitiativeTrackerComponent implements OnInit {
 
   enteredSession = 1;
   sessionDynamic:FirebaseObjectObservable<any>;
-  session = null;
   serverList:FirebaseListObservable<any>;
   initiativeList = [];
   workingList = [];
   round = 1;
-  currentIndex = 0;
+  currentIndex =  0;
   called = false;
   started = false;
+  session:any;
 
   constructor(private combatantService:CombatantService, private sessionService:SessionService, private router:Router) {
 
@@ -46,6 +46,7 @@ export class InitiativeTrackerComponent implements OnInit {
           this.round = x.round;
           this.started = x.started;
           this.shiftList();
+          this.session = x;
         }
         else {
           this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: false});
@@ -63,9 +64,13 @@ export class InitiativeTrackerComponent implements OnInit {
       x.forEach((c:any)=>{
         this.addItemToList(c);
       });
+      this.shiftList();
     });
   }
+  begin(event){
 
+    this.sessionService.setSession(this.enteredSession, {started: true, currentIndex:  0, round: 1});
+  }
   advance(event) {
     if(!this.called) {
       this.called = true;
@@ -76,7 +81,7 @@ export class InitiativeTrackerComponent implements OnInit {
         this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
       }
       else {
-        this.currentIndex = this.currentIndex + 1;
+        this.currentIndex =  this.currentIndex + 1;
         this.called = false;
         this.sessionService.setSession(this.enteredSession, {currentIndex: this.currentIndex, round: this.round, started: this.started});
       }
@@ -103,22 +108,17 @@ export class InitiativeTrackerComponent implements OnInit {
         return parseInt(a.order) - parseInt(b.order);
       });
       this.initiativeList.reverse();
-    if (!this.bottomView.started) {
-      this.workingList = this.initiativeList;
-    }
-    else {
-      this.shiftList();
-    }
   }
 
   shiftList(){
-    let tempList = this.initiativeList.map((x) => {return x});
+    let tempList:any = this.initiativeList.map((x) => {return x});
 
-    this.workingList = tempList.splice(this.currentIndex, tempList.length - this.currentIndex);
-    tempList.forEach((x) => {
-      this.workingList.push(x);
-    });
+
+      this.workingList = tempList.splice(this.currentIndex, tempList.length - this.currentIndex);
+      tempList.forEach((x) => {
+        this.workingList.push(x);
+
+      });
   }
-
 
 }

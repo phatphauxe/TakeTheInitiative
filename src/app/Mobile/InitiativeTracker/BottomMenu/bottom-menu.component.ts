@@ -2,7 +2,7 @@
  * Created by Admin on 1/11/2017.
  */
 import {Component, Output, EventEmitter, Input, OnInit} from '@angular/core';
-import {SessionService} from "../../shared/services/sessionService";
+import {SessionService} from "../../../shared/services/sessionService";
 import {FirebaseObjectObservable} from "angularfire2";
 import {isNullOrUndefined} from "util";
 
@@ -16,9 +16,10 @@ export class BottomMenuComponent implements OnInit{
   @Input() listLength:number;
   @Input() sessionID:number;
   @Output() advanceBtnClicked = new EventEmitter<boolean>();
+  @Output() beginBtnClicked = new EventEmitter<boolean>();
   session:FirebaseObjectObservable<any>;
   started:boolean;
-  currentIndex:number;
+  currentIndex:any;
   round:number;
 
   constructor(private sessionService:SessionService){}
@@ -48,7 +49,8 @@ export class BottomMenuComponent implements OnInit{
     e.preventDefault();
     if(!this.started) {
       if(this.listLength > 1) {
-        this.sessionService.setSession(this.sessionID, {started: true, currentIndex: 0, round: 1});
+        this.beginBtnClicked.emit(true);
+
       }
     }
     else {

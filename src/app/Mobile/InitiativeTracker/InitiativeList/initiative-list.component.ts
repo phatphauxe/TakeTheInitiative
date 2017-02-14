@@ -2,7 +2,7 @@
  * Created by Admin on 1/11/2017.
  */
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {SessionService} from "../../shared/services/sessionService";
+import {SessionService} from "../../../shared/services/sessionService";
 import {isNullOrUndefined} from "util";
 
 @Component ({

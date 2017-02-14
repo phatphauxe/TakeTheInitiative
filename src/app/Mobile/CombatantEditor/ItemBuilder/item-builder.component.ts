@@ -2,7 +2,7 @@
  * Created by Admin on 1/13/2017.
  */
 import {Component} from '@angular/core';
-import {CombatantService} from "../../shared/services/combatantService";
+import {CombatantService} from "../../../shared/services/combatantService";
 import {Router} from "@angular/router";
 
 @Component({
